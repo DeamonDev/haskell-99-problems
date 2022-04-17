@@ -1,5 +1,20 @@
 -- Problem 1 --
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+
+module Chapter1 
+( myLast
+, myButLast
+, elementAt
+, myLength
+, myReverse
+, isPalindrome
+, flatten
+, compress
+, NestedList
+, pack
+, encode  
+) where
+
 import Control.Arrow
 
 myLast :: [a] -> a
