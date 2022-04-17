@@ -1,5 +1,6 @@
 -- Problem 1 --
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+import Control.Arrow
 
 myLast :: [a] -> a
 myLast []     = error "there is no last element in an empty list!"
@@ -61,5 +62,9 @@ pack = foldr packLambda [[]]
   where packLambda x [[]] = [[x]]
         packLambda x acc@(y:ys) =
           if x == head y then (x:y):ys else [x]:acc
+  
+-- Problem 10 --
+encode :: (Eq a) => [a] -> [(Int, a)]
+encode xs = map (\x -> (length x, head x)) $ pack xs
 
 
