@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 import Chapter1
 import Control.Arrow
 
@@ -20,6 +21,17 @@ decodeModified =
     decodeModifiedFold (Multiple n x) acc = replicate n x ++ acc
 
 -- Problem 13 -- 
+encodeDirect :: (Eq a) => [a] -> [Entity a]
+encodeDirect xs = encodeDirectHelper 1 (head xs) (tail xs) where
+  encodeDirectHelper n x []
+    | n == 1 = [Single x]
+    | otherwise = [Multiple n x]
+  encodeDirectHelper 1 x (y:ys)
+    | x == y     = encodeDirectHelper 2 x ys
+    | otherwise  = (Single x):(encodeDirectHelper 1 y ys)
+  encodeDirectHelper n x (y:ys)
+    | x == y     = encodeDirectHelper (n + 1) x ys
+    | otherwise  = (Multiple n x):(encodeDirectHelper 1 y ys)
 
 
 
