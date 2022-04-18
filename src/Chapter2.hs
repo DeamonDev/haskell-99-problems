@@ -33,8 +33,7 @@ encodeDirect xs = encodeDirectHelper 1 (head xs) (tail xs) where
     | x == y     = encodeDirectHelper (n + 1) x ys
     | otherwise  = (Multiple n x):(encodeDirectHelper 1 y ys)
 
-
-
-
-
+-- Problem 14 --
+dupli :: [a] -> [a]
+dupli xs = concat $ map (\x -> [x, x]) xs
 
