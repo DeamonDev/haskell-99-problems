@@ -35,5 +35,5 @@ encodeDirect xs = encodeDirectHelper 1 (head xs) (tail xs) where
 
 -- Problem 14 --
 dupli :: [a] -> [a]
-dupli xs = concat $ map (\x -> [x, x]) xs
+dupli = concatMap (\x -> [x, x]) 
 
