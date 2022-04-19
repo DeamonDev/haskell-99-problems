@@ -75,3 +75,11 @@ slice xs l r = reverse $ sliceHelper xs 1 [] where
 
 -- Problem 19 -- 
 
+-- Problem 20 -- 
+removeAt :: (Eq a) => [a] -> Int -> [a]
+removeAt xs k = removeAtHelper xs 1 [] where
+  removeAtHelper x@(y:ys) n acc 
+    | null ys      = (acc ++ [y])
+    | n == k      = removeAtHelper ys (n + 1) acc
+    | otherwise   = removeAtHelper ys (n + 1) (acc ++ [y])
+
