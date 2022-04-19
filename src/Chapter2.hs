@@ -57,3 +57,21 @@ dropEveryIter xs n k acc
 
 dropEvery :: [a] -> Int -> [a] 
 dropEvery xs n = dropEveryIter (reverse xs) n (length xs) [] 
+
+-- Problem 17 -- 
+split :: [a] -> Int -> ([a], [a])
+split xs n = splitHelper xs n [] where
+  splitHelper (y:ys) k init
+    | k == 1      = (init ++ [y], ys)
+    | otherwise   = splitHelper ys (k - 1) (init ++ [y])
+
+-- Problem 18 -- 
+slice :: [a] -> Int -> Int -> [a] 
+slice xs l r = reverse $ sliceHelper xs 1 [] where
+  sliceHelper (y:ys) k acc 
+    | k < l             = sliceHelper ys (k + 1) acc
+    | k >= l && k < r   = sliceHelper ys (k + 1) (y:acc) 
+    | k == r            = (y:acc)
+
+-- Problem 19 -- 
+
