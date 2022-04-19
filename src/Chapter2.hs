@@ -42,10 +42,18 @@ dupli = concatMap (\x -> [x, x])
 -- Problem 15 --
 repliHelp :: Int -> a -> [a] -> [a] 
 repliHelp n e acc 
-  | n == 0 = acc 
+  | n == 0    = acc 
   | otherwise = repliHelp (n-1) e acc ++ [e]
 
 repli :: [a] -> Int -> [a] 
 repli xs n = concatMap (\x -> repliHelp n x []) xs
 
 -- Problem 16 -- 
+dropEveryIter :: [a] -> Int -> Int -> [a] -> [a]
+dropEveryIter xs n k acc 
+    | k < 0                 = acc
+    | k `mod` n == 0        = dropEveryIter (tail xs) n (k - 1) acc 
+    | k `mod` n /= 0        = dropEveryIter (tail xs) n (k - 1) acc ++ [head xs]
+
+dropEvery :: [a] -> Int -> [a] 
+dropEvery xs n = dropEveryIter (reverse xs) n (length xs) [] 
