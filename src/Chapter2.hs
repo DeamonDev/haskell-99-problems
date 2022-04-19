@@ -1,4 +1,6 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant bracket" #-}
 import Chapter1
 import Control.Arrow
 
@@ -37,3 +39,13 @@ encodeDirect xs = encodeDirectHelper 1 (head xs) (tail xs) where
 dupli :: [a] -> [a]
 dupli = concatMap (\x -> [x, x]) 
 
+-- Problem 15 --
+repliHelp :: Int -> a -> [a] -> [a] 
+repliHelp n e acc 
+  | n == 0 = acc 
+  | otherwise = repliHelp (n-1) e acc ++ [e]
+
+repli :: [a] -> Int -> [a] 
+repli xs n = concatMap (\x -> repliHelp n x []) xs
+
+-- Problem 16 -- 
