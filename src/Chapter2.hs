@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Redundant bracket" #-}
+
+module Chapter2 where
 import Chapter1
 import Control.Arrow
 

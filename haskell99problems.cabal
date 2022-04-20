@@ -35,6 +35,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , random
   default-language: Haskell2010
 
 executable haskell99problems-exe
@@ -47,6 +48,7 @@ executable haskell99problems-exe
   build-depends:
       base >=4.7 && <5
     , haskell99problems
+    , random
   default-language: Haskell2010
 
 test-suite haskell99problems-test
@@ -60,4 +62,5 @@ test-suite haskell99problems-test
   build-depends:
       base >=4.7 && <5
     , haskell99problems
+    , random
   default-language: Haskell2010
