@@ -32,5 +32,5 @@ randomlySelect n xs = do
 
 -- Problem 24 --
 diffSelect :: Int -> Int -> IO ()
-diffSelect n bound = randomlySelect n [1..bound]
+diffSelect n bound = undefined 
 
