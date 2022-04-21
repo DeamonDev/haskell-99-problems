@@ -7,6 +7,7 @@ module Chapter3 where
 import Chapter2
 
 import System.Random
+import Control.Monad
 
 -- Problem 21 -- 
 insertAt :: a -> [a] -> Int -> [a]
@@ -31,6 +32,19 @@ randomlySelect n xs = do
   print randomVals
 
 -- Problem 24 --
+diffSelectHelper :: StdGen -> Int -> [Int] -> [Int] -> IO ()
+diffSelectHelper gen k currentList acc = do
+  if k == 0 
+    then print acc
+  else do 
+    let (newIndex, newGen) = randomR (0, length currentList - 1) gen :: (Int, StdGen)
+    let newList = removeAt currentList (newIndex + 1)
+    diffSelectHelper newGen (k - 1) newList ((currentList !! newIndex):acc)
+
 diffSelect :: Int -> Int -> IO ()
-diffSelect n bound = undefined 
+diffSelect n m = do 
+  gen       <- getStdGen 
+  diffSelectHelper gen n [1..m] []
+
+
 
