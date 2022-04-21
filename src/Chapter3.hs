@@ -8,6 +8,7 @@ import Chapter2
 
 import System.Random
 import Control.Monad
+import Data.List (sortBy, groupBy)
 
 -- Problem 21 -- 
 insertAt :: a -> [a] -> Int -> [a]
@@ -52,22 +53,25 @@ randomPermutation s = do
   let len = length s
   p      <- diffSelect len len
   let p'   = map (\x -> x - 1) p
-  print $ [s !! i | i <- p']
+  print [s !! i | i <- p']
 
 -- Problem 26 -- 
 combinations :: Int -> [a] -> [[a]]
 combinations _ [] = []
 combinations 0 [x] = [[]]
-combinations 1 xs = map (\x -> [x]) xs
-combinations k ys = (map (\x -> y:x) z) ++ combinations k (init ys) where
-  y = head $ reverse ys
+combinations 1 xs = map (: []) xs
+combinations k ys = (map (y :) z) ++ combinations k (init ys) where
+  y = last ys
   z = combinations (k - 1) (init ys)
 
+-- Problem 28 -- 
+lsort :: [[a]] -> [[a]]
+lsort = sortBy (\x y -> length x `compare` length y)
 
+fsort' :: [[a]] -> [[[a]]] 
+fsort' =  groupBy (\x y -> length x == length y) 
 
-
-
-
-
+fsort :: [[a]] -> [[a]]
+fsort = concat . lsort . fsort' . lsort
 
 
