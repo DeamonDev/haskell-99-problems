@@ -34,25 +34,39 @@ randomlySelect n xs = do
 -- Problem 24 --
 diffSelectHelper :: StdGen -> Int -> [Int] -> [Int] -> IO [Int]
 diffSelectHelper gen k currentList acc = do
-  if k == 0 
+  if k == 0
     then return acc
-  else do 
+  else do
     let (newIndex, newGen) = randomR (0, length currentList - 1) gen :: (Int, StdGen)
     let newList = removeAt currentList (newIndex + 1)
     diffSelectHelper newGen (k - 1) newList ((currentList !! newIndex):acc)
 
 diffSelect :: Int -> Int -> IO [Int]
-diffSelect n m = do 
-  gen       <- getStdGen 
+diffSelect n m = do
+  gen       <- getStdGen
   diffSelectHelper gen n [1..m] []
 
 -- Problem 25 -- 
-randomPermutation :: String -> IO () 
-randomPermutation s = do 
+randomPermutation :: String -> IO ()
+randomPermutation s = do
   let len = length s
-  p      <- diffSelect len len 
-  let p'   = map (\x -> x - 1) p 
+  p      <- diffSelect len len
+  let p'   = map (\x -> x - 1) p
   print $ [s !! i | i <- p']
+
+-- Problem 26 -- 
+combinations :: Int -> [a] -> [[a]]
+combinations _ [] = []
+combinations 0 [x] = [[]]
+combinations 1 xs = map (\x -> [x]) xs
+combinations k ys = (map (\x -> y:x) z) ++ combinations k (init ys) where
+  y = head $ reverse ys
+  z = combinations (k - 1) (init ys)
+
+
+
+
+
 
 
 
