@@ -10,12 +10,14 @@ import System.Random
 import Control.Monad
 import Data.List (sortBy, groupBy)
 
+
 -- Problem 21 -- 
 insertAt :: a -> [a] -> Int -> [a]
 insertAt e xs n = insertAtHelp e xs 1 [] where
   insertAtHelp e (y:ys) k acc
     | k < n       = insertAtHelp e ys (k + 1) (acc ++ [y])
     | k == n      = (acc ++ [e, y] ++ ys)
+
 
 -- Problem 22 -- 
 myRange :: Int -> Int -> [Int]
@@ -55,7 +57,7 @@ randomPermutation s = do
   let p'   = map (\x -> x - 1) p
   print [s !! i | i <- p']
 
--- Problem 26 -- 
+-- Problem 26 --
 combinations :: Int -> [a] -> [[a]]
 combinations _ [] = []
 combinations 0 [x] = [[]]
@@ -64,7 +66,8 @@ combinations k ys = (map (y :) z) ++ combinations k (init ys) where
   y = last ys
   z = combinations (k - 1) (init ys)
 
--- Problem 28 -- 
+
+-- Problem 28 --
 lsort :: [[a]] -> [[a]]
 lsort = sortBy (\x y -> length x `compare` length y)
 
@@ -73,5 +76,6 @@ fsort' =  groupBy (\x y -> length x == length y)
 
 fsort :: [[a]] -> [[a]]
 fsort = concat . lsort . fsort' . lsort
+
 
 

@@ -75,7 +75,9 @@ slice xs l r = reverse $ sliceHelper xs 1 [] where
     | k >= l && k < r   = sliceHelper ys (k + 1) (y:acc) 
     | k == r            = (y:acc)
 
--- Problem 19 -- 
+-- Problem 19 --
+
+
 
 -- Problem 20 -- 
 removeAt :: (Eq a) => [a] -> Int -> [a]
